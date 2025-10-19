@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta de CEP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .resultado {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Consulta de CEP</h1>
+  <form method="POST">
+    <input type="text" name="cep" placeholder="Digite o CEP (ex: 01001000)" required>
+    <button type="submit">Buscar</button>
+  </form>
+
+  {% if resultado %}
+  <div class="resultado">
+    {% if resultado.erro %}
+      <p><strong>Erro:</strong> {{ resultado.erro }}</p>
+    {% else %}
+      <p><strong>CEP:</strong> {{ resultado.cep }}</p>
+      <p><strong>Logradouro:</strong> {{ resultado.logradouro }}</p>
+      <p><strong>Bairro:</strong> {{ resultado.bairro }}</p>
+      <p><strong>Cidade:</strong> {{ resultado.localidade }}</p>
+      <p><strong>UF:</strong> {{ resultado.uf }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+</body>
+</html>
